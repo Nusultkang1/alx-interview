@@ -1,32 +1,25 @@
 #!/usr/bin/python3
-"""
-Creates a function def pascal_triangle(n)
-Returns a list of lists of integers
-represents the pascal's triangle of n rows
-Returns and empty list if n <= 0
-"""
+"""An interview challenge to represent pascal's triangle with a list of lists"""
 
-def print_pascal_triangle(n):
-    """
-    function that prints pascal's triangle of
-    n rows if n > 0, and returns an empty list if n <= 0
-    """
 
-    triangle = []
+def pascal_triangle(n):
+    """returns a list of lists of numbers
+    representing the pascal triangle"""
+    if n <= 0:
+        return []
+
+    pascal_triangle = [0] * n
 
     for i in range(n):
-        row = []
+        
+        row = [0] * (i+1)
+        row[0] = 1
+        row[len(row) - 1] = 1
 
-        for j in range(i + 1):
-            if j == 0 or j == i:
-                element = 1
-            else:
-                element = triangle[i - 1][j - 1] + triangle[i - 1][j]
-            row.append(element)
-        triangle.append(row)
+        for j in range(1, i):
+            if j > 0 and j < len(row):
+                row[j] = pascal_triangle[i - 1][j] + pascal_triangle[i - 1][j - 1]
 
-    for row in triangle:
-        for element in row:
-            print(element, end=' ')
-        print()
+        pascal_triangle[i] = row
 
+    return pascal_triangle
