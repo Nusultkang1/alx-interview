@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """function that checks all boxes (functions) and returns True if they can be opened and False if they can't"""
 
 def canUnlockAll(boxes):
@@ -18,3 +18,4 @@ def canUnlockAll(boxes):
                 stack.append(key)
 
     return all(unlocked)
+
